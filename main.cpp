@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
     cout << "Bonjour,je suis  et je viens d'arriver en ville" << endl;
-
+// commentaire
     Personnage Jean;
     string nom = Jean.getnom();
     cout << nom << endl;

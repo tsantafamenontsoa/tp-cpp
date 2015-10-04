@@ -1,7 +1,7 @@
 #ifndef LIEU_H
 #define LIEU_H
 #include <string>
-
+// une classe lieu
 class Lieu{
     private:
         std::string nomLieu;
