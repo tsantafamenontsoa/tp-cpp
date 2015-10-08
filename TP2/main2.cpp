@@ -24,12 +24,20 @@ class Lieu{
         long distance(const Lieu* l);
         ~Lieu();
 };
-
-class Transport{
-    std::string mode;
-    Lieu* desserte;
-
-}
+//
+//class Transport{
+//    private:
+//        std::string mode;
+//        Lieu* desserte;
+//
+//    public:
+//        Transport(){
+//
+//        }
+//
+//
+//
+//}
 
 class Personnage{
     private:
@@ -72,12 +80,12 @@ class Personnage{
             lieu = l;
         }
 
-        void deplace(Lieu* l,Transport* t){
-            setLieu(l);
-            string destination = l.getNomLieu();
-            long dist = distance(l);
-            std::cout << "Je vais à" +destination+ "en faisant" +dist+ "pas" << endl;
-        }
+//        void deplace(Lieu* l,Transport* t){
+//            setLieu(l);
+//            string destination = l.getNomLieu();
+//            long dist = distance(l);
+//            std::cout << "Je vais à" +destination+ "en faisant" +dist+ "pas" << endl;
+//        }
 
         ~Personnage(){
             std::cout << "Il n'y a plus rien à faire ici pour moi," +nomPersonnage+ " Adieu" << endl;
