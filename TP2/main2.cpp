@@ -28,7 +28,7 @@ class Lieu{
 //class Transport{
 //    private:
 //        std::string mode;
-//        Lieu* desserte;
+//        Lieu* desserte[];
 //
 //    public:
 //        Transport(){
@@ -129,36 +129,36 @@ class Personnage{
             return nomLieu;
         }
 
-        Lieu* Lieu::getAccessible(long n){
-            return *accessible[n];
-        }
-
-        void Lieu::addAccessible(Lieu* l){
-            int n = getNbAccessible();
-            accessible[n] = &l;
-            setNbAccessible(n+1);
-        }
-
-        void Lieu::removeAccessible(Lieu* l){
-            int n = getNbAccessible();
-            for(int i=0;i<n;i++){
-                if(*accessible[i] == l){
-                    for(int j=i;j<n;j++)
-                        *accessible[j] = *accessible[j+1];
-                }
-            }
-            *accessible[n] = NULL;
-            setNbAccessible(n-1);
-        }
-
-        long Lieu::distance(const Lieu* l){
-            int n = getNbAccessible();
-            for(long i=0;i<n;i++){
-                if(*accessible[i] == l){
-                    return i;
-                }
-                }
-        }
+//        Lieu* Lieu::getAccessible(long n){
+//            return *accessible;
+//        }
+//
+////        void Lieu::addAccessible(Lieu* l){
+//            int n = getNbAccessible();
+//            accessible[n] = &l;
+//            setNbAccessible(n+1);
+//        }
+//
+//        void Lieu::removeAccessible(Lieu* l){
+//            int n = getNbAccessible();
+//            for(int i=0;i<n;i++){
+//                if(*accessible[i] == l){
+//                    for(int j=i;j<n;j++)
+//                        *accessible[j] = *accessible[j+1];
+//                }
+//            }
+//            *accessible[n] = NULL;
+//            setNbAccessible(n-1);
+//        }
+//
+//        long Lieu::distance(const Lieu* l){
+//            int n = getNbAccessible();
+//            for(long i=0;i<n;i++){
+//                if(*accessible[i] == l){
+//                    return i;
+//                }
+//                }
+//        }
 
 
         Lieu::~Lieu(){
@@ -171,16 +171,16 @@ int main(){
     Personnage Jean("Joseph","Ecrire");
     Lieu ici("st maur",false);
     Lieu labas("paris13",false);
-    string nom = Jean.getnom();
-    Lieu* ptr = Jean.getLieu();
-    string lieu = ici.getNomLieu();
-    std::cout << nom << endl;
-    ici.addAccessible(ptr);
-    long nbr = ici.getNbAccessible();
-    std::cout << nbr << endl;
-    Lieu* endroit = ici.getAccessible(0);
-    std::cout << (*endroit).getNomLieu() << endl;
-    ici.removeAccessible(ptr);
-    std::cout << ici.getNbAccessible() << endl;
+//    string nom = Jean.getnom();
+//    Lieu* ptr = Jean.getLieu();
+//    string lieu = ici.getNomLieu();
+//    std::cout << nom << endl;
+//    ici.addAccessible(ptr);
+//    long nbr = ici.getNbAccessible();
+//    std::cout << nbr << endl;
+//    Lieu* endroit = ici.getAccessible(0);
+//    std::cout << (*endroit).getNomLieu() << endl;
+//    ici.removeAccessible(ptr);
+//    std::cout << ici.getNbAccessible() << endl;
     return 0;
 }
