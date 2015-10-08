@@ -125,7 +125,7 @@ class Personnage{
             return *accessible[n];
         }
 
-        void Lieu::addAccessible(Lieu* l){
+        void Lieu::addAccessible(Lieu * l){
             int n = getNbAccessible();
             accessible[n] = &l;
             setNbAccessible(n+1);
