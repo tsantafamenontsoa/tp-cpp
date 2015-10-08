@@ -1,11 +1,12 @@
 #include <iostream>
+#include <malloc.h>
 
 using namespace std;
 class Lieu{
     private:
         std::string nomLieu;
         bool estOuvert;
-        Lieu** accessible[];
+        Lieu ** accessible;
         long nbAccessible;
 
     public:
@@ -84,11 +85,11 @@ class Personnage{
 //            setLieu(l);
 //            string destination = l.getNomLieu();
 //            long dist = distance(l);
-//            std::cout << "Je vais à" +destination+ "en faisant" +dist+ "pas" << endl;
+//            std::cout << "Je vais Ã " +destination+ "en faisant" +dist+ "pas" << endl;
 //        }
 
         ~Personnage(){
-            std::cout << "Il n'y a plus rien à faire ici pour moi," +nomPersonnage+ " Adieu" << endl;
+            std::cout << "Il n'y a plus rien Ã  faire ici pour moi," +nomPersonnage+ " Adieu" << endl;
         }
 
 };
@@ -98,7 +99,7 @@ class Personnage{
         }
 
         Lieu::Lieu(string nom,bool etat): nomLieu(nom), estOuvert(etat), nbAccessible(0){
-            *accessible = 0;
+	  accessible = new Lieu*[20];
         }
 
         bool Lieu::getEtat(){
@@ -129,36 +130,37 @@ class Personnage{
             return nomLieu;
         }
 
-//        Lieu* Lieu::getAccessible(long n){
-//            return *accessible;
-//        }
-//
-////        void Lieu::addAccessible(Lieu* l){
-//            int n = getNbAccessible();
-//            accessible[n] = &l;
-//            setNbAccessible(n+1);
-//        }
-//
-//        void Lieu::removeAccessible(Lieu* l){
-//            int n = getNbAccessible();
-//            for(int i=0;i<n;i++){
-//                if(*accessible[i] == l){
-//                    for(int j=i;j<n;j++)
-//                        *accessible[j] = *accessible[j+1];
-//                }
-//            }
-//            *accessible[n] = NULL;
-//            setNbAccessible(n-1);
-//        }
-//
-//        long Lieu::distance(const Lieu* l){
-//            int n = getNbAccessible();
-//            for(long i=0;i<n;i++){
-//                if(*accessible[i] == l){
-//                    return i;
-//                }
-//                }
-//        }
+        Lieu * Lieu::getAccessible(long n){
+	    return accessible[n];
+        }
+
+        void Lieu::addAccessible(Lieu* l){
+            int n = getNbAccessible();
+	    accessible[n] = l;
+	    
+            setNbAccessible(n+1);
+        }
+/*
+        void Lieu::removeAccessible(Lieu* l){
+            int n = getNbAccessible();
+            for(int i=0;i<n;i++){
+                if(*accessible[i] == l){
+                    for(int j=i;j<n;j++)
+                        *accessible[j] = *accessible[j+1];
+                }
+            }
+            *accessible[n] = NULL;
+            setNbAccessible(n-1);
+        }
+
+        long Lieu::distance(const Lieu* l){
+            int n = getNbAccessible();
+            for(long i=0;i<n;i++){
+                if(*accessible[i] == l){
+                    return i;
+                }
+                }
+        } */
 
 
         Lieu::~Lieu(){
@@ -171,15 +173,25 @@ int main(){
     Personnage Jean("Joseph","Ecrire");
     Lieu ici("st maur",false);
     Lieu labas("paris13",false);
-//    string nom = Jean.getnom();
-//    Lieu* ptr = Jean.getLieu();
-//    string lieu = ici.getNomLieu();
-//    std::cout << nom << endl;
-//    ici.addAccessible(ptr);
-//    long nbr = ici.getNbAccessible();
-//    std::cout << nbr << endl;
-//    Lieu* endroit = ici.getAccessible(0);
-//    std::cout << (*endroit).getNomLieu() << endl;
+    string nom = Jean.getnom();
+    
+    // Lieux * ptr = Jean.getLieu() , io no nataonao teo. tsy misy valeur anefa ilay "Jean.getLieu()" dia novaiko &labas ftsn i-testena anazy. 
+    // Logique raha tsisy valeur satria tsisy instruction mamorona objet Lieu ao anatiny ny JOHN mihintsy ao anatinreo instruction ambony ireo
+    Lieu* ptr = &labas;  
+    
+    
+    // Ito instruction ito tsy hitako izay ilana anazy
+    string lieu = ici.getNomLieu(); 
+    
+    
+    std::cout << nom << endl;
+    ici.addAccessible(ptr);
+    long nbr = ici.getNbAccessible();
+    std::cout << nbr << endl;
+    Lieu * endroit = ici.getAccessible(0);
+    std::cout << "Le nom du lieu est : " << endroit->getNomLieu() << endl;
+    
+    // Partie remove avelako ianao no manao anazy, tsy tokony ho sarotra instony. jereo ny fct addAccessible sy getAccessible
 //    ici.removeAccessible(ptr);
 //    std::cout << ici.getNbAccessible() << endl;
     return 0;
